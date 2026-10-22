@@ -1,57 +1,49 @@
-# Rajput · Indian Cuisine
+# Rajput · India, in Busan
 
-A responsive Korean/English restaurant website for Rajput in Deokcheon, Busan. Includes an editorial homepage, searchable digital menu, dish details, location links and a printable table-menu QR.
+The rebuilt cinematic Korean/English website for 라즈뿟 인도요리 in Deokcheon, Busan: full-screen food imagery, scroll-driven tandoor/naan/curry chapters, a searchable menu, dish details, location links and printable QR artwork.
 
-## Run locally
+## Run and verify
 
-Requires Node.js 20 or later. No dependency install is required.
+Node.js 20 or later. No dependency installation required.
 
 ```sh
 npm run dev
 ```
 
-Open `http://localhost:4173`. Set `PORT` to use a different port.
+Open http://localhost:4173. Set `PORT` if needed.
 
 ```sh
-npm run build
 npm run check
 ```
 
-The production output is `dist/`. The check command validates JavaScript syntax and runs the Node test suite. Run the build before running checks from a fresh checkout.
+This checks module syntax, builds `dist/`, then runs the test suite. `npm run build` builds only. Upload `dist/` to a static host; repository changes alone do not enable hosting.
 
-## Deploy
-
-Upload `dist/` to any static host. The site has no server, accounts, paid service dependencies or external QR API. All three routes are generated as independent HTML documents:
-
-- `/` — restaurant homepage
-- `/menu/` — bilingual digital menu
-- `/qr/` — QR download and printable table card
-
-For a project subdirectory, set the base path when building:
+For hosting under a project path:
 
 ```sh
 BASE_PATH=/Rajput/ npm run build
 ```
 
-The QR always uses the active domain and configured base path. Generate customer QR cards from the final public website, not a local or restricted preview. A custom domain is managed by the chosen host; adding source to a repository does not automatically enable hosting.
+Routes: `/`, `/menu/`, `/qr/`. The menu QR is generated locally from the visitor's current origin and configured base path; it never points to the private design-preview host. Print customer cards only from the approved final public domain after a signed-out access test.
 
-## Edit content
+## Source
 
-- `src/data.js` — menu entries, categories, business information and photo provenance. Data shapes are documented with JSDoc.
-- `src/i18n.js` — complete Korean and English interface text.
-- `src/app.js` — rendering, navigation, language persistence, search, dialog, clipboard and QR behavior.
-- `src/style.css` — responsive layouts, keyboard focus, reduced motion and print styles.
-- `src/index.html` — page shell, fonts and metadata.
-- `public/assets/` — local photos and favicon.
-- `public/vendor/qrcode.js` — bundled QR encoder, MIT licensed.
-- `scripts/` — static build and local server.
-- `tests/` — behavior and content-integrity checks.
-- `docs/` — research, asset rights, testing and launch requirements.
+- `src/index.html` — page shell and metadata
+- `src/app.js` — renderers, motion, search, filters, dialogs and QR interactions
+- `src/menu-data.js` — nine bilingual menu records with evidence and confirmation status
+- `src/i18n.js` — Korean/English interface labels
+- `src/style.css` — responsive compositions, motion, focus and print styles
+- `src/utils.js` — path, search, storage and QR URL helpers
+- `public/assets/` — three new concept food images and proposed favicon
+- `public/vendor/qrcode.js` — existing MIT-licensed QR encoder, retained
+- `scripts/` — dependency-free build/server, retaining base-path support
+- `tests/` — behavior, content-integrity and build checks
+- `docs/` — research, design rationale, approval checklist and QA
 
-The interface defaults to Korean and remembers language locally. Search works across both languages and supports category filtering. QR generation is local. No form collects personal data; map and listing links open their respective services.
+The design includes reduced-motion support. Language persists when storage is available and falls back safely when storage is blocked. The generated food images and proposed wordmark are concept assets, not authentic restaurant photography or an official logo.
 
-## Content status
+## Approval status
 
-This is a restaurant design preview. Menu entries, prices, opening hours, contact details and photography need restaurant approval before official launch. Unconfirmed prices and contact numbers are not fabricated. Stock photography is labeled as illustrative. Search indexing remains disabled until launch approval.
+This is a private client demonstration by Ayro. Current prices, hours, contact details, menu availability and real photography require owner approval. No booking or payment is collected. Search indexing stays disabled. No official public launch is authorized by this source transfer.
 
-See [content status](docs/CONTENT_STATUS.md), [owner approval](docs/OWNER_APPROVAL.md), [research](docs/RESEARCH.md), [third-party notices](docs/THIRD_PARTY_NOTICES.md) and [validation](docs/TESTING.md).
+See [content status](docs/CONTENT_STATUS.md), [research](docs/RESEARCH.md), [design](docs/DESIGN.md), [owner approval](docs/OWNER_APPROVAL.md), [third-party notices](docs/THIRD_PARTY_NOTICES.md) and [testing](docs/TESTING.md).
