@@ -1,8 +1,160 @@
-export const dictionary={
-preview:['AYRO PRIVATE CONCEPT · 비공식 시안','AYRO PRIVATE CONCEPT · NOT AN OFFICIAL WEBSITE'],aboutPreview:['시안 안내 ↗','About this concept ↗'],menu:['메뉴','The menu'],table:['우리의 식탁','At the table'],visit:['찾아오시는 길','Find us'],viewMenu:['메뉴 보기 ↗','Explore the menu ↗'],credit:['Ayro가 제안하는 비공개 시안','Private concept by Ayro'],qrLink:['QR 메뉴','QR menu'],
-heroEye:['INDIAN CUISINE · DEOKCHEON, BUSAN','INDIAN CUISINE · DEOKCHEON, BUSAN'],heroTitle:['인도의 풍미,<br>부산의 한 식탁.<br><em>A little India.</em>','A little India.<br>A table in<br><em>Busan.</em>'],heroIntro:['커리 한 그릇, 난 한 조각. 덕천에서 만나는 인도 요리, 라즈뿟의 식탁을 둘러보세요.','A bowl of curry. A piece of naan. Discover Indian cuisine at Rajput, tucked into the streets of Deokcheon.'],findUs:['위치 확인 ↗','Find your way ↗'],conceptPhoto:['콘셉트 이미지 · 실제 매장 음식 사진이 아닙니다','Concept image · not an actual Rajput dish'],heroFoot:['라즈뿟 인도요리 · 부산 북구 덕천1길 9, 2층','RAJPUT INDIAN CUISINE · 9 DEOKCHEON 1-GIL, 2F'],heroFoot2:['함께 나누는 한 끼의 즐거움','GOOD FOOD. A TABLE TO SHARE.'],discoverEye:['01 / THE MENU','01 / THE MENU'],discoverTitle:['오늘의 식탁을<br>골라보세요.','Follow your<br><em>appetite.</em>'],discoverNote:['탄두리부터 커리와 난까지. 외부 자료에 소개된 요리를 살펴보고, 궁금한 메뉴의 자세한 내용을 확인하세요.','From the tandoor to curry and naan. Explore dishes mentioned in restaurant listings and guest reports.'],allMenu:['전체 메뉴 둘러보기 ↗','Discover the menu ↗'],tandoor:['탄두리 요리','From the tandoor'],tandoorNote:['탄두리 치킨 · 파니르 티카','Tandoori chicken · paneer tikka'],curry:['커리 한 그릇','A bowl of curry'],curryNote:['램 도 피아자','Lamb do piaza'],naan:['난과 함께','Better with naan'],naanNote:['플레인 · 버터 · 갈릭','Plain · butter · garlic'],tableEye:['02 / AT THE TABLE','02 / AT THE TABLE'],tableTitle:['찢고, 찍고,<br>함께 나누는 시간.','Tear. Dip.<br><em>Share a little.</em>'],tableText:['난을 찢어 커리에 곁들이고, 탄두리 요리를 함께 나누어 보세요. 처음 만나는 메뉴라면 이름을 눌러 요리 정보를 살펴보세요.','Start with a piece of naan, discover a curry, and pass a plate around. New to a dish? Open the menu to get to know it a little better.'],tableSub:['이곳은 라즈뿟을 위한 디자인 시안입니다. 메뉴와 매장 정보는 최종 확인 후 확정됩니다.','This is a design concept for Rajput. Menu and restaurant details are subject to final confirmation.'],visitEye:['03 / FIND RAJPUT','03 / FIND RAJPUT'],visitTitle:['덕천에서<br>만나요.','A little closer<br>than you think.'],address:['부산광역시 북구 덕천1길 9, 2층','9 Deokcheon 1-gil, Buk-gu, Busan · 2F'],landmark:['ARTBOX / 설빙 건물 2층 · 덕천역 인근','ARTBOX / Seolbing building, second floor · near Deokcheon Station'],naver:['네이버 지도 ↗','Naver Maps ↗'],kakao:['카카오맵 ↗','Kakao Maps ↗'],copyAddress:['주소 복사 +','Copy address +'],copied:['복사되었습니다 ✓','Address copied ✓'],floorLabel:['ARTBOX / 설빙 건물','ARTBOX / SEOLBING BUILDING'],floorNote:['건물 2층에서 라즈뿟을 찾아주세요.','Look for Rajput on the second floor.'],confirmVisit:['영업시간과 전화번호는 매장 확인 중입니다. 방문 전 최신 지도 정보를 확인해 주세요.','Hours and contact number await owner confirmation. Check current map listings before visiting.'],contact:['방문 및 연락 안내 ↗','Visit & contact information ↗'],
-menuEye:['DIGITAL MENU / 라즈뿟 인도요리','DIGITAL MENU / RAJPUT INDIAN CUISINE'],menuTitle:['라즈뿟 <em>메뉴.</em>','The <em>menu.</em>'],menuIntro:['천천히 둘러보고, 취향에 맞게 골라보세요. 외부 자료를 바탕으로 구성한 미리보기로, 현재 메뉴·가격·판매 여부는 매장 확인이 필요합니다.','Take your time. Find something you love. This preview draws on public listings; current dishes, prices and availability await restaurant confirmation.'],all:['전체','All dishes'],curryCat:['커리','Curry'],tandoorCat:['탄두리','Tandoor'],naanCat:['난','Naan'],sidesCat:['곁들임','Sides'],search:['메뉴 이름 검색…','Search dishes…'],searchLabel:['메뉴 검색','Search the menu'],clear:['검색 지우기','Clear search'],items:['개 메뉴','dishes'],pricePending:['가격 확인 예정','Price awaiting confirmation'],researchNote:['외부 자료 기반 미리보기 · 정식 메뉴가 아닙니다','Listing-based preview · not an approved current menu'],menuNote:['재료, 알레르기 유발 성분, 맵기 및 식단 관련 사항은 매장에 직접 확인해 주세요. 현재 판매 여부와 가격은 아직 확정되지 않았습니다.','Please confirm ingredients, allergens, spice levels and dietary requirements directly with the restaurant. Current availability and prices are unconfirmed.'],backHome:['← 홈으로','← Back to home'],qrAction:['QR 메뉴 보기 ↗','Open QR menu ↗'],emptyTitle:['찾으시는 메뉴가 없어요.','Nothing on this plate yet.'],emptyText:['다른 이름으로 검색하거나 카테고리를 바꿔보세요.','Try another dish name or choose a different category.'],reset:['전체 메뉴 보기','Show all dishes'],detailSource:['참고 자료 보기 ↗','View listing source ↗'],provisional:['외부 자료 기반 · 매장 확인 필요','LISTING-BASED · OWNER CONFIRMATION PENDING'],close:['닫기','Close'],previewTitle:['라즈뿟을 위한 새로운 제안','A new chapter for Rajput.'],previewText:['Ayro가 준비한 비공개 디자인 시안으로, 라즈뿟의 공식 웹사이트가 아닙니다. 이미지와 워드마크는 제안용이며, 메뉴·가격·영업시간·연락처는 매장 승인 전입니다. 예약이나 주문을 접수하지 않습니다.','A private design demonstration prepared by Ayro, not Rajput’s official website. The images and wordmark are conceptual. Menu, pricing, hours and contact details require owner approval. This site does not accept bookings or orders.'],previewLink:['콘텐츠 확인 현황 보기 ↗','Read content verification status ↗'],contactTitle:['방문 전에 확인해 주세요.','Before you visit.'],contactText:['온라인 자료의 전화번호와 휴무일이 일치하지 않아, 이 시안에는 전화 연결을 제공하지 않습니다. 최신 지도 정보를 확인해 주세요. 예약은 이 사이트에서 접수되지 않습니다.','Published phone numbers and closing days differ, so this concept does not provide a call link. Please check current map listings. Reservations are not accepted on this site.'],
-qrTitle:['스캔 한 번으로,<br><em>메뉴를 만나세요.</em>','A menu,<br><em>one scan away.</em>'],qrIntro:['스캔하면 메뉴로 바로 연결됩니다. 현재는 비공개 시안으로, 사이트 소유자의 로그인이 필요합니다. 고객 배포 전 공개 전환과 매장 승인이 필요합니다.','Scan to open the menu directly. This is currently a private concept and requires the site owner to sign in. Owner approval and public access are needed before customer distribution.'],scan:['스캔해서 메뉴 보기','Scan to explore the menu'],privateQr:['비공개 시안 · 사이트 소유자 로그인 필요','PRIVATE CONCEPT · SITE OWNER SIGN-IN REQUIRED'],print:['QR 카드 인쇄 ↗','Print QR card ↗'],download:['QR 코드 다운로드 ↓','Download QR code ↓'],openDestination:['메뉴 열기 ↗','Open menu destination ↗'],qrFine:['별도 앱 설치 없이 카메라로 스캔하세요. 이 QR은 현재 비공개 메뉴 URL을 가리킵니다. 고객용 인쇄물은 공개 접근 테스트 후 배포해 주세요.','Use your phone camera; no extra app is needed. This QR points to the private menu URL. Only distribute customer artwork after testing public access.']};
-Object.assign(dictionary,{footerInvite:['인도의 풍미. 바로, 이곳에서.','A little India. Right here.'],table:['요리 이야기','The experience'],credit:['Ayro 비공개 시안 · 이미지: 콘셉트 연출','Private concept by Ayro · Concept imagery'],menuTitle:['좋은 한 끼의<br><em>시작.</em>','Good things.<br><em>On the menu.</em>'],viewMenu:['메뉴 보기 ↗','Explore menu ↗']});
-
-Object.assign(dictionary,{qrIntro:['스캔하면 메뉴로 바로 연결됩니다. 디자인 시안이므로 고객용 QR 배포 전 매장 승인과 공개 접근 테스트가 필요합니다.','Scan to open the menu directly. This is a design preview; owner approval and a public-access test are required before customer distribution.'],privateQr:['디자인 시안 · 매장 승인 전','DESIGN PREVIEW · OWNER APPROVAL PENDING'],qrFine:['별도 앱 설치 없이 카메라로 스캔하세요. QR은 현재 사이트의 메뉴로 연결됩니다. 고객용 인쇄물은 공개 접근 테스트 후 배포해 주세요.','Use your phone camera; no extra app is needed. The QR opens this site’s menu. Only distribute customer artwork after testing public access.']});
+// Korean first, English second. The restaurant name stays bilingual in either interface.
+export const dictionary = {
+  menu: ["메뉴", "Menu"],
+  table: ["함께하는 식탁", "At the table"],
+  visit: ["오시는 길", "Visit us"],
+  viewMenu: ["메뉴 보기 ↗", "Explore the menu ↗"],
+  qrLink: ["QR 메뉴", "QR menu"],
+  previewNote: [
+    "비공식 디자인 시안 · 이미지는 연출된 콘셉트 사진입니다.",
+    "Unofficial design preview · All food photography is conceptual.",
+  ],
+  previewInfo: ["시안 안내", "About this preview"],
+  heroLocation: ["부산, 덕천", "Deokcheon, Busan"],
+  heroCuisine: ["인도요리", "Indian cuisine"],
+  heroLine: [
+    "커리 한 그릇, 따뜻한 난.\n덕천에서 만나는 인도의 식탁.",
+    "A bowl of curry. Warm naan.\nAn Indian table in Deokcheon.",
+  ],
+  directions: ["길 찾기 ↗", "Get directions ↗"],
+  photoNote: ["콘셉트 사진", "Concept photograph"],
+  foodEyebrow: ["라즈뿟 메뉴", "ON THE MENU"],
+  foodTitle: ["무엇부터\n맛볼까요?", "What’s on\nyour table?"],
+  foodIntro: [
+    "커리와 난, 탄두리 요리까지. 마음에 드는 메뉴를 골라 함께 나눠 보세요.",
+    "Curry, naan, and tandoori dishes. Find something for your table.",
+  ],
+  foodCta: ["전체 메뉴 둘러보기 ↗", "Browse the full menu ↗"],
+  featuredTandoor: ["탄두리 치킨", "Tandoori chicken"],
+  featuredCurry: ["버터 치킨", "Butter chicken"],
+  featuredNaan: ["갈릭 난", "Garlic naan"],
+  featuredTandoorSub: ["탄두리 · Tandoor", "Tandoor · 탄두리"],
+  featuredCurrySub: ["커리 · Curry", "Curry · 커리"],
+  featuredNaanSub: ["난 · Naan", "Naan · 난"],
+  tableEyebrow: ["함께하는 식탁", "A LITTLE OF EVERYTHING"],
+  tableTitle: [
+    "커리에 난을 찍어,\n한 입 더.",
+    "Curry meets naan.\nMake room for more.",
+  ],
+  tableText: [
+    "커리 한 가지와 난으로 시작해 보세요. 함께라면 탄두리 요리를 더해 나눠 먹는 조합도 좋습니다.",
+    "Start with a curry and naan. Sharing? Add a tandoori dish and make a meal of it.",
+  ],
+  tableLink: ["나만의 조합 찾아보기 ↗", "Find your combination ↗"],
+  visitEyebrow: ["부산 덕천에서 만나요", "FIND US IN DEOKCHEON"],
+  visitTitle: ["라즈뿟으로\n오시는 길", "A table in\nDeokcheon."],
+  address: [
+    "부산광역시 북구 덕천1길 9, 2층",
+    "2F, 9 Deokcheon 1-gil, Buk-gu, Busan",
+  ],
+  landmark: [
+    "ARTBOX·설빙 건물 2층",
+    "Second floor of the ARTBOX / Sulbing building",
+  ],
+  copyAddress: ["주소 복사", "Copy address"],
+  copied: ["주소를 복사했습니다.", "Address copied."],
+  copyFailed: [
+    "복사할 수 없습니다. 아래 주소를 길게 눌러 복사해 주세요.",
+    "Could not copy. Select and copy the address below.",
+  ],
+  mapPrompt: ["편한 지도 앱으로 찾아오세요.", "Open your preferred map."],
+  naver: ["네이버 지도 ↗", "Naver Maps ↗"],
+  kakao: ["카카오맵 ↗", "Kakao Maps ↗"],
+  google: ["구글 지도 ↗", "Google Maps ↗"],
+  hoursLabel: ["방문 전 확인", "Before you visit"],
+  hoursText: [
+    "영업시간과 연락처가 외부 정보마다 달라 확인 중입니다. 방문 전 지도에서 최신 정보를 확인해 주세요.",
+    "Published hours and phone numbers differ. Check the latest listing before travelling.",
+  ],
+  faqTitle: ["방문 전, 궁금한 점", "A few things before you visit"],
+  faq1: ["메뉴 가격은 어디서 볼 수 있나요?", "Where can I find prices?"],
+  faq1a: [
+    "이 페이지는 디자인 시안입니다. 확인된 최신 가격이 없어 표시하지 않았습니다. 현재 메뉴와 가격은 매장에 확인해 주세요.",
+    "This is a design preview. Current prices have not been verified, so no prices are shown. Check the restaurant’s current menu before ordering.",
+  ],
+  faq2: [
+    "매운맛이나 알레르기 정보를 알 수 있나요?",
+    "What about spice levels and allergies?",
+  ],
+  faq2a: [
+    "메뉴의 정확한 재료, 알레르기 유발 성분, 매운맛은 아직 확인되지 않았습니다. 주문 전 매장 직원에게 꼭 확인해 주세요.",
+    "Ingredients, allergens, and spice levels are not yet verified. Please ask the restaurant before ordering.",
+  ],
+  faq3: ["예약이나 포장이 가능한가요?", "Can I reserve or order takeaway?"],
+  faq3a: [
+    "예약 및 포장 운영 여부는 확인 중입니다. 지도 앱의 최신 매장 정보를 참고해 매장에 직접 문의해 주세요.",
+    "Reservation and takeaway arrangements are unconfirmed. Use a current map listing to contact the restaurant directly.",
+  ],
+  menuEyebrow: ["라즈뿟 인도요리", "RAJPUT INDIAN CUISINE"],
+  menuTitle: ["메뉴", "The menu"],
+  menuIntro: [
+    "커리부터 난까지, 취향대로 둘러보세요.",
+    "From curry to naan. Find your favourites.",
+  ],
+  menuNotice: [
+    "메뉴 미리보기 · 외부 방문 후기를 바탕으로 구성했습니다. 전체 메뉴가 아니며, 현재 판매 여부와 가격은 매장 확인이 필요합니다.",
+    "Menu preview · Curated from public visit reports. This is not a complete current menu. Availability and prices need restaurant confirmation.",
+  ],
+  all: ["전체", "All"],
+  curry: ["커리", "Curry"],
+  tandoor: ["탄두리", "Tandoor"],
+  naan: ["난", "Naan"],
+  sides: ["곁들임", "Sides"],
+  drinks: ["음료", "Drinks"],
+  search: ["메뉴 검색", "Search the menu"],
+  searchPlaceholder: ["메뉴 이름을 검색하세요", "Search a dish, e.g. naan"],
+  clearSearch: ["검색어 지우기", "Clear search"],
+  results: ["개의 메뉴", " dishes"],
+  pricePending: ["가격 확인 중", "Price pending"],
+  details: ["자세히 보기", "View details"],
+  emptyTitle: ["찾으시는 메뉴가 없어요", "Nothing on the table yet"],
+  emptyText: [
+    "다른 이름으로 검색하거나 전체 메뉴를 살펴보세요.",
+    "Try another dish name or browse all categories.",
+  ],
+  reset: ["전체 메뉴 보기", "Show all dishes"],
+  menuFooter: [
+    "현재 가격과 제공 여부는 매장에 확인해 주세요.",
+    "Please confirm current prices and availability with the restaurant.",
+  ],
+  ingredientsNote: [
+    "재료·알레르기·매운맛 정보는 매장에 확인해 주세요.",
+    "Ask the restaurant about ingredients, allergens, and spice levels.",
+  ],
+  sourceLabel: ["메뉴 정보 출처", "Menu information source"],
+  sourceNote: [
+    "외부 방문 기록을 참고한 시안입니다. 현재 메뉴와 다를 수 있습니다.",
+    "A preview based on public visit reports. The current menu may differ.",
+  ],
+  openSource: ["출처 보기 ↗", "View source ↗"],
+  close: ["닫기", "Close"],
+  qrTitle: ["메뉴를\n가까이.", "The menu,\nwithin reach."],
+  qrIntro: [
+    "휴대폰 카메라로 스캔하면 메뉴가 바로 열립니다.",
+    "Scan with your phone camera to open the menu directly.",
+  ],
+  qrCardTitle: ["메뉴 보기", "Explore our menu"],
+  qrCardSub: ["카메라로 QR을 스캔해 주세요", "Scan with your phone camera"],
+  qrDemo: [
+    "시안 · 배포 전 매장 승인 필요",
+    "DEMO · Restaurant approval required",
+  ],
+  download: ["QR 다운로드 (SVG) ↓", "Download QR (SVG) ↓"],
+  print: ["테이블 카드 인쇄", "Print table card"],
+  qrDestination: ["연결되는 메뉴 주소", "Menu destination"],
+  qrWarning: [
+    "이 카드는 시안입니다. 매장 승인과 로그아웃 상태의 실제 휴대폰 스캔 확인 후 배포해 주세요.",
+    "This is a demo card. Distribute only after restaurant approval and a signed-out scan test on a real phone.",
+  ],
+  qrError: [
+    "QR을 생성하지 못했습니다. 페이지를 새로고침하거나 아래 메뉴 링크를 사용해 주세요.",
+    "The QR code could not load. Refresh the page or use the menu link below.",
+  ],
+  aboutTitle: ["이 웹사이트에 대해", "About this preview"],
+  aboutText: [
+    "라즈뿟 인도요리를 위한 비공식 디자인 시안입니다. 매장에서 승인한 공식 웹사이트가 아닙니다. 음식 사진은 콘셉트 이미지이며, 실제 음식이나 매장 내부를 촬영한 사진이 아닙니다. 메뉴·가격·영업 정보는 매장 확인 후 업데이트할 예정입니다.",
+    "An unofficial design preview for Rajput Indian Cuisine. It is not the restaurant’s authorized website. Food images are conceptual, not photographs of Rajput’s dishes or interior. Menu, pricing, and operating information require owner confirmation.",
+  ],
+  notFound: ["페이지를 찾을 수 없습니다", "This page isn’t on the menu"],
+  backHome: ["홈으로 돌아가기 ↗", "Back to Rajput ↗"],
+};

@@ -1,38 +1,43 @@
-# Rajput research — 23 October 2026 (Korea)
+# Rajput research · 22 October 2026
 
-This is a private Ayro concept. VERIFIED below means corroborated in independently accessed public listings, not owner-approved. Public restaurant aggregators can be stale or contaminated.
+## Business identity
 
-| Finding | Status | Evidence and action |
-|---|---|---|
-| Korean name 라즈뿟 인도요리; Indian cuisine in Deokcheon, Buk-gu, Busan | VERIFIED | DiningCode + AutoReserve agree. |
-| English listing Rajput Indian Cuisine | VERIFIED as listing name; preferred signage wording NEEDS OWNER CONFIRMATION | AutoReserve explicitly pairs Korean and English names. Restaurant Guru uses Rajput Indian Restaurant. |
-| 9 Deokcheon 1-gil, second floor; ARTBOX / Seolbing building | VERIFIED across listings | DiningCode + AutoReserve; Tistory reports lot address 400-12, second floor. Entry and accessibility require on-site check. |
-| Near Deokcheon Station | VERIFIED | AutoReserve identifies nearby station. Do not promise a walking duration, route or station exit. |
-| Phone 010-9005-4175 | NEEDS OWNER CONFIRMATION | DiningCode. Not used as a call link. |
-| Phone 0507-1321-4175 | NEEDS OWNER CONFIRMATION | AutoReserve + 2025 Tistory report. Not used as a call link. |
-| Phone 010-5733-5756 | NEEDS OWNER CONFIRMATION | Restaurant Guru and supplied brief; not inferred to be an approved official channel. |
-| Hours 11–22 and Tuesday closing | NEEDS OWNER CONFIRMATION | DiningCode + AutoReserve. Tistory instead reports Monday closing and later weekend hours. No live open/closed indicator. |
-| Tandoori chicken, samosa, papad, paneer tikka | PROVISIONAL | DiningCode menu entries. Current portions, availability and recipe are unapproved. |
-| Lamb do piaza, plain naan | PROVISIONAL | Restaurant-specific review excerpts aggregated on DiningCode. Lower confidence than a current official menu. |
-| Butter naan, garlic naan | PROVISIONAL | 2025 independent visit report. Current availability unapproved. |
-| All current prices | NEEDS OWNER CONFIRMATION | Listing amounts are not proof of current owner prices. All website price fields are null. |
-| Dine-in experience | PROVISIONAL | Independent visit report; no formal facilities promises. |
-| Delivery / takeaway / reservations | NEEDS OWNER CONFIRMATION | Directory labels exist; no service, ordering or booking promise implemented. |
-| Logo, interior, heritage, chef biography, dietary and allergen claims | NEEDS OWNER CONFIRMATION | No owner-authorized materials obtained. No invented story or interior imagery. |
+This investigation concerns **라즈뿟 인도요리 / Rajput Indian Cuisine**, Deokcheon, Buk-gu, Busan. English directory variants include “Mr Lamb Rajput Indian Restaurant” and the Korean “라즈뿟미스터램.” The address match is essential: unrelated Rajput businesses in the United States were excluded.
 
-## Accessed sources
+“Cross-checked” below means agreement between public sources, **not owner confirmation**. Aggregators and visitor accounts can be stale or syndicated; there is no owner-supplied current menu in this project.
 
-1. https://www.diningcode.com/profile.php?rid=CNcqD9shI2WV — identity, address, conflicting phone, menu and guest-report evidence.
-2. https://autoreserve.com/ko/restaurants/jBdSit1NJHSm5yjrbE9x — bilingual listing name, location, conflicting phone and hours. Page itself warns entries are user supplied. Its website field says none; this does not prove no official site exists.
-3. https://two-chickens.tistory.com/96 — dated 17 August 2025; visit report, naan mentions, floor/landmark and conflicting hours. Images not copied (CC attribution/noncommercial/no derivatives notice).
-4. https://restaurantguru.com/Mr-Lamb-Rajput-Indian-Restaurant-Busan — alternate English wording and phone; no ratings, awards or reviews republished.
-5. https://dining.ayo.pe.kr/restaurant/fbdea915ba21709720c86e5734f8d6a4 — secondary public-register mirror corroborates road address; gives 2nd/3rd-floor registration footprint. Not proof of public guest entrance.
-6. https://hamgae.com/place/34499/%EB%9D%BC%EC%A6%88%EB%BF%9F-%EC%9D%B8%EB%8F%84%EC%9A%94%EB%A6%AC/ — supplementary address signal. Pet and parking claims deliberately not reused.
+| Information | Evidence and confidence | Implementation |
+| --- | --- | --- |
+| Korean name 라즈뿟 인도요리 | DiningCode, AutoReserve and independent visitor report; high public-source confidence | Prominent bilingual identity |
+| Rajput Indian Cuisine | AutoReserve English name plus Rajput directory variants; medium/high | English identity; no claim of registered logo |
+| 부산 북구 덕천1길 9, 2층 | DiningCode, AutoReserve, independent 2025 visit and same-address Restaurant Guru; high public-source confidence | Address, 2F, exact-address map searches |
+| ARTBOX / Sulbing building | DiningCode and visitor report; corroborated landmark | Secondary location cue; no claimed walking time |
+| Near Deokcheon Station | AutoReserve and same-address directory context | Deokcheon locality; no invented exit or timed route |
+| Phone | 010-5733-5756 in initial English directory lead; DiningCode 010-9005-4175; AutoReserve/visitor report 0507-1321-4175 | Withheld: no call/booking button |
+| Hours / closing day | Aggregators show 11–22 and Tuesday closed; visitor report dated 2025-08-17 records Monday closure and later weekend hours | Withheld; visitors directed to latest map listing |
+| Logo / signage | Visitor article contains building/sign photographs, but no owner-provided vector/logo or established reuse licence | Original proposed type treatment; not asserted official |
+| Actual restaurant/dish photos | Public visitor photographs found; no owner-approved production assets | No copied review photographs; concept photos disclosed |
+| Reservations / takeaway / parking / pets | Directory attributes are insufficiently corroborated | No service promises |
+| Awards / history / signature claims | Not established | Omitted |
 
-## Search limitations and identity control
+## Sources and discrepancies
 
-Korean and English searches for restaurant, menu, Naver and official website were performed using two search engines. Direct owned Naver/Kakao/Google profiles and a current owner-issued digital menu were not verified. The website offers map search destinations containing the exact restaurant and address, not a falsely claimed verified place ID or turn-by-turn route. No owned website could be confidently attributed to this Busan restaurant. Similar Rajput sites in Virginia and other countries were excluded. No public directory photo was licensed for reuse. Actual signage could not be visually authenticated; the concept wordmark is original typography, not an official logo.
+1. [DiningCode](https://www.diningcode.com/profile.php?rid=CNcqD9shI2WV). Name, address, second-floor ARTBOX/Sulbing context and restaurant-specific reviews. **The bulk menu is contaminated:** paneer tikka and chicken makhni descriptions explicitly name “헬로인디아” / “헬로인디아알와하,” another restaurant. This defeats treating the entire menu and prices as a reliable Rajput source. It is retained only as clearly provisional, item-level evidence where other restaurant-specific reports support the dish family.
+2. [AutoReserve](https://autoreserve.com/ko/restaurants/jBdSit1NJHSm5yjrbE9x). Korean/English identity and matching second-floor address. Hours/phone are listing data, not owner confirmation; absence of a website field does not prove the business has no official site.
+3. [Independent visit, 2025-08-17](https://two-chickens.tistory.com/96). Same address and second-floor building context, curry/naan/tandoori, butter naan and garlic naan; also historical couple-set/chilli-crab context. These are historical observations, not a current offer. Photographs carry restricted reuse terms and were not copied into the site.
+4. [Same-address Restaurant Guru listing](https://restaurantguru.com/라즈뿟미스터램-Busan). 9 Deokcheon 1-gil; visitor YN Kim describes tandoori, butter chicken, lamb curry, samosa and lassi. This is dish-level visitor evidence, not a current menu, a signature endorsement, or confirmation of flavour variants.
+5. [English directory lead](https://restaurantguru.com/Mr-Lamb-Rajput-Indian-Restaurant-Busan). Associated English naming/contact lead, but contact conflicts prevent publication.
+6. [Registration mirror](https://dining.ayo.pe.kr/restaurant/fbdea915ba21709720c86e5734f8d6a4). Supports the road address; registration-floor details are not a verified customer entrance and do not justify advertising third-floor seating.
+7. [Local directory](https://hamgae.com/place/34499/라즈뿟-인도요리/). Additional public-presence lead. Uncorroborated facilities/policy attributes were not adopted.
 
-## Practical digital opportunity
+No direct restaurant contact, reservation request, purchase, or third-party photo licensing action was taken. Map links search the restaurant name and exact address; a current verified place ID/pin remains for owner review.
 
-A readable Korean/English menu, direct address access, mobile category navigation and a single QR destination address specific discovery needs without pretending to offer reservations or ordering. Owner confirmation and real licensed photography are the next content inputs.
+## Menu curation
+
+The previous nine records were re-evaluated, not treated as the full menu. Paneer tikka and papad were removed from display because their evidence depended on the questionable bulk listing. The specific lamb do piaza label was replaced by the less specific, independently described lamb curry. Butter chicken and lassi were added from the matched-address guest report. The resulting nine records span curry, tandoor, naan, sides and drinks.
+
+Tandoori half/whole portions and plain naan remain explicitly provisional listing/review evidence. Tandoori as a dish family is independently corroborated; current portion sizes are not. Butter and garlic naan are supported by the independent visit. Samosa is supported by the same-address guest report. All prices remain null; no allergen, spice, vegetarian or other dietary tags are inferred. General culinary descriptions explain the dish type, not a verified Rajput recipe.
+
+## Repository versus deployment at inspection
+
+The repository was fetched before editing. On 22 October 2026 its `buy` head was `12071a9d0e2108da3035a1eecebb8a5de2cf1beb`. The existing Vercel site visibly showed the rejected cinematic design. Independent HTTP SHA-256 comparisons of live `index.html`, `app.js`, `style.css`, `i18n.js`, `menu-data.js` and `utils.js` against the locally built old repository all matched. Thus the audited deployment and repository represented the same built application at the start of this reset. This is a timestamped check, not an assumption about later deployments.

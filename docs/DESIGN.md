@@ -1,35 +1,35 @@
-# Rajput — design replacement, version 2
+# Rajput · a warm neighbourhood table
 
-This replaces the rejected warm editorial design. The owner's brief remains authoritative for identity and content; the user's follow-up asks for a much more ambitious visual composition and motion, with the clarity and polish of an Apple product presentation.
+## Three directions evaluated
 
-## Visual direction
+| Direction | Composition and character | Decision |
+| --- | --- | --- |
+| Warm neighbourhood table | Cream and wine; a strong restaurant-name masthead; daylight shared food; printed-menu rules and calm useful navigation | Selected: welcoming, recognizably a restaurant, coherent in Korean and English, useful after a table scan |
+| Cobalt graphic canteen | White/cobalt, compact poster typography, cropped dish studies, energetic tiled menu | Distinct, but the louder graphic treatment had weak grounding in Rajput's documented public identity |
+| Dark theatrical tasting sequence | Near-black, cinematic spotlit food, large moving titles and pinned chapters | Rejected: repeats the prior design's hierarchy and places the scroll performance ahead of the restaurant |
 
-A cinematic culinary product experience: black and near-white, oversized Manrope/Noto Sans KR typography, close studio food images, a restrained vivid orange detail, generous changes of scale and full-screen compositions. The earlier green/paper palette, serif wordmark, numbered editorial index and stamp motif are removed. The proposed RAJPUT wordmark uses a simple orange dot; it is not an official restaurant logo.
+The chosen design is a **proposed identity**, not a claim to reproduce the existing sign. It replaces the previous black presentation's full-screen scroll mechanism, generic hero copy, and repetitive staging. It also avoids recolouring the earlier green split-hero layout: the new masthead, wide table photograph, numbered dish index and printed-menu treatment form a different composition.
 
-Three possible resets were considered: a bright gallery of isolated dishes, an expressive kinetic poster, and the selected cinematic product presentation. The selected direction gives food the strongest presence, supports meaningful scroll transitions and remains legible in Korean and English. The bright gallery felt too close to a conventional menu landing page; the poster risked obscuring navigation.
+## Visual system
 
-## Composition
+- Paper `#f8f3e9`, wine `#682d37`, dark body ink `#382b29`, muted brown `#75675f`, rules `#d9cabe`, soft paper `#eee6d8`, small olive accents `#555b3e`. Wine is the identity, not a generic saffron theme.
+- DM Serif Display gives the Rajput name a distinctive restaurant masthead. DM Sans handles English UI; Noto Sans KR handles Korean. Display headings in Korean use moderate weight and careful line breaks. System fallbacks remain available.
+- A 1440px maximum content grid, fluid 22–80px gutters, two-column useful sections on desktop, stacked compositions on phones. Main food banner may extend to 1800px. The type name, not generic marketing copy, is the hero.
+- Square, restrained button treatments; underlined text actions; hairline separators. No floating glass navigation, arbitrary gradient, rounded card grid, fabricated badge or fake award.
+- Menu rows use consistent text-first presentation, names in both languages, compact pending-price status and an unmistakable detail action. Dish imagery appears only in relevant details. Category filters and search stay near the top during browsing.
+- Navigation becomes a readable dropdown on tablet/mobile; the actual menu is one clear action away. QR landing goes directly to the menu, without a gate or installation.
+- Visiting information prioritizes the corroborated address/floor and local map providers. Conflicting contact/hours are handled once, without fake call buttons.
 
-1. Full-viewport curry image and large location-led headline.
-2. Quiet light section with a large statement; its final phrase darkens as the reader scrolls.
-3. Pinned food sequence: tandoor, naan, curry. Images crossfade and ease into scale while the active chapter and progress respond to scrolling. Chapter buttons move directly to the corresponding position in the sequence.
-4. A contrasting light menu invitation: large image and compact browse action.
-5. Clear address and arrival information, then an oversized wordmark footer.
+## Photography
 
-The menu and QR pages use the same typography and control language. Search, filters, item details, language persistence, source disclosures, address copying and map searches remain functional. The homepage avoids a permanent bottom action overlay; the menu retains compact mobile navigation.
+Three newly generated daylight compositions: `table.webp` (curry, tandoori and naan on ivory linen), `tandoori.webp` (chicken on a burgundy plate), `naan.webp` (bread in a woven basket with a wine napkin). All use a warm window-light direction, restrained props and consistent natural tones. WebP quality 84; secondary images lazy-load, explicit dimensions reserve space. The hero loads with high priority.
+
+These are illustrative food images, not the restaurant's dishes or interior. No diner-review photos were copied. Captions and the footer/about disclosure make that distinction. The owner must supply approved real photographs before an official launch. The food-sharing section suggests a meal combination without inventing a chef story, interior aesthetic, heritage, recipe or service promise.
 
 ## Motion and accessibility
 
-Entrance motion, restrained hero parallax/fade, reveal transitions, the scroll-driven pinned sequence, active chapter progress and dialog transitions create a continuous experience. Scroll work is requestAnimationFrame gated. Navigation and category controls are semantic links/buttons; dialogs preserve focus and support Escape. Inactive food slides are inert. Reduced-motion visitors get static images and three sequential food panels with no pinning or animated transitions. Browser tests cannot substitute for a real-device or assistive-technology audit.
+Normal document scrolling; no pinned chapters or scroll interception. A modest initial photograph settle and 22px section reveal support the hierarchy. Small hover responses clarify actions. Reduced motion removes animation/transitions and leaves content visible; unsupported IntersectionObserver also leaves content visible. Native dialogs supply modal keyboard containment, Escape and focus restoration. Visible focus rings, semantic headings, named controls, result announcements and target sizes support keyboard and touch use.
 
-## Assets
+## QR artwork
 
-Three new conceptual raster images were created using the built-in image generation tool, then converted to WebP without substantive edits:
-
-- `dist/assets/hero-v2.webp`: rich curry in a low black ceramic bowl, near-black studio, warm spotlight and negative space on the left.
-- `dist/assets/tandoor-v2.webp`: tandoori chicken on a dark plate, charred texture, warm directional light and subtle smoke.
-- `dist/assets/naan-v2.webp`: torn blistered naan on a sculptural dark plate, cream stone surface, grazing light.
-
-Prompts specified photorealistic premium food campaign imagery, no people, text, watermarks or graphics, and explicitly described conceptual food rather than authentic Rajput dishes. Each image is labelled conceptual in the interface. Replace all three with owner-authorized restaurant photography before an official launch. The curry is not asserted to be a photograph of lamb do piaza; its alt text says it is a concept image, not an actual menu dish. No interior image was invented.
-
-Fonts load from the official Google Fonts CSS endpoint with system fallbacks. The QR asset and exact production menu destination are preserved. Hosting remains owner-private.
+The wine/cream double-rule card repeats the actual bilingual identity. The QR itself remains black on white with a four-module quiet zone. It is generated locally with medium correction from the current origin plus the configured base and `menu/`. A native SVG link exports vector artwork; the print stylesheet isolates the card on A5. The card is visibly marked demo, with release dependent on owner approval and an actual signed-out phone scan.

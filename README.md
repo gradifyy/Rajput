@@ -1,49 +1,57 @@
-# Rajput · India, in Busan
+# Rajput · 라즈뿟 인도요리
 
-The rebuilt cinematic Korean/English website for 라즈뿟 인도요리 in Deokcheon, Busan: full-screen food imagery, scroll-driven tandoor/naan/curry chapters, a searchable menu, dish details, location links and printable QR artwork.
+A Korean-first restaurant website and digital menu for Rajput in Deokcheon, Busan. The new direction uses cream, wine, expressive restaurant typography and daylight food imagery. This is an **unofficial design demonstration**, not an owner-approved restaurant launch.
 
-## Run and verify
+## Run
 
-Node.js 20 or later. No dependency installation required.
+Node.js 20+. No runtime dependencies or installation step.
 
 ```sh
 npm run dev
 ```
 
-Open http://localhost:4173. Set `PORT` if needed.
+Open `http://localhost:4173`. `PORT` changes the port.
 
 ```sh
 npm run check
 ```
 
-This checks module syntax, builds `dist/`, then runs the test suite. `npm run build` builds only. Upload `dist/` to a static host; repository changes alone do not enable hosting.
+Checks JavaScript syntax, builds `dist/`, and runs 18 tests. Build only with `npm run build`. Vercel uses the retained root `vercel.json`: Other framework, build `npm run build`, output `dist`. The repository's default branch is `buy`.
 
-For hosting under a project path:
+For a project subpath:
 
 ```sh
 BASE_PATH=/Rajput/ npm run build
+BASE_PATH=/Rajput/ npm test
 ```
 
-Routes: `/`, `/menu/`, `/qr/`. The menu QR is generated locally from the visitor's current origin and configured base path; it never points to the private design-preview host. Print customer cards only from the approved final public domain after a signed-out access test.
+Use the same base path in development. Root routes are `/`, `/menu/`, `/qr/`; unknown routes receive the custom 404 experience. Static hosting must serve the generated route directories and `404.html`.
 
-## Source
+## Features
 
-- `src/index.html` — page shell and metadata
-- `src/app.js` — renderers, motion, search, filters, dialogs and QR interactions
-- `src/menu-data.js` — nine bilingual menu records with evidence and confirmation status
-- `src/i18n.js` — Korean/English interface labels
-- `src/style.css` — responsive compositions, motion, focus and print styles
-- `src/utils.js` — path, search, storage and QR URL helpers
-- `public/assets/` — three new concept food images and proposed favicon
-- `public/vendor/qrcode.js` — existing MIT-licensed QR encoder, retained
-- `scripts/` — dependency-free build/server, retaining base-path support
-- `tests/` — behavior, content-integrity and build checks
-- `docs/` — research, design rationale, approval checklist and QA
+- Bilingual Korean/English interface, bilingual dish names and persistent language preference with blocked-storage fallback.
+- Nine curated provisional records across five categories; category filters, Unicode-normalized search, clear/reset and empty states.
+- Accessible native dish dialogs, keyboard close and focus restoration; deep links such as `/menu/?dish=garlic-naan`.
+- Naver, Kakao and Google map searches using the cross-checked name/address, plus address copying with an error fallback.
+- Locally generated QR, native SVG download link and A5 print styles. The destination always uses the current origin plus configured base and `/menu/`; no third-party QR service.
+- Responsive compositions, optimized WebP, lazy secondary images, modest reveals and reduced-motion support.
 
-The design includes reduced-motion support. Language persists when storage is available and falls back safely when storage is blocked. The generated food images and proposed wordmark are concept assets, not authentic restaurant photography or an official logo.
+## Edit
 
-## Approval status
+| File | Responsibility |
+| --- | --- |
+| `src/menu-data.js` | Dish content, evidence, category, price/status, visibility and image association |
+| `src/i18n.js` | Korean/English interface copy |
+| `src/app.js` | Page compositions and interactions |
+| `src/style.css` | Visual system, responsive rules, focus and print styles |
+| `src/utils.js` | Escaping, search, base paths, safe storage and menu URLs |
+| `src/index.html` | Shared shell and preview metadata |
+| `public/assets/` | Concept food photographs and proposed favicon |
+| `public/vendor/qrcode.js` | Retained MIT QR encoder |
+| `scripts/` | Dependency-free build and local server |
 
-This is a private client demonstration by Ayro. Current prices, hours, contact details, menu availability and real photography require owner approval. No booking or payment is collected. Search indexing stays disabled. No official public launch is authorized by this source transfer.
+Dish prices are `null`, availability is unconfirmed, and tags are empty deliberately. Owner-approved data should replace provisional records; the nine records are not a complete menu. No ordering, payment, booking, analytics, or customer-data collection is implied. Contact numbers and opening hours are withheld because sources conflict. Font requests use Google Fonts with system fallbacks.
 
-See [content status](docs/CONTENT_STATUS.md), [research](docs/RESEARCH.md), [design](docs/DESIGN.md), [owner approval](docs/OWNER_APPROVAL.md), [third-party notices](docs/THIRD_PARTY_NOTICES.md) and [testing](docs/TESTING.md).
+All food photographs and the proposed wordmark are concept assets, not authentic Rajput photography or its official logo. The demo retains robots/meta/header noindex directives. These directives discourage indexing; they are not access control. Do not distribute table cards until owner approval and a signed-out physical phone scan succeed.
+
+See [research](docs/RESEARCH.md), [content status](docs/CONTENT_STATUS.md), [design](docs/DESIGN.md), [owner approval](docs/OWNER_APPROVAL.md), [testing](docs/TESTING.md) and [third-party notices](docs/THIRD_PARTY_NOTICES.md).

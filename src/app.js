@@ -1,56 +1,326 @@
-import {dictionary} from './i18n.js';
-import {menuItems} from './menu-data.js';
-import {normalizeBase,menuURL,readLanguage,saveLanguage,searchDishes} from './utils.js';
-const base=normalizeBase(document.querySelector('meta[name="rajput-base"]').content);
-const route=location.pathname.slice(base.length).replace(/^\/+|\/+$/g,'');
-const main=document.querySelector('main'),dialog=document.querySelector('dialog');
-let storage;try{storage=window.localStorage}catch{storage=null}
-let lang=readLanguage(storage),category='all',query='';
-function t(key){const v=dictionary[key];return v?v[lang==='ko'?0:1]:key}const i=(key,tag='span',cls='')=>`<${tag} data-i="${key}"${cls?` class="${cls}"`:''}>${t(key)}</${tag}>`;
-function updateUI(){document.documentElement.lang=lang;document.querySelector('header nav').setAttribute('aria-label',lang==='ko'?'주 메뉴':'Main navigation');document.querySelectorAll('[data-i]').forEach(el=>el.innerHTML=t(el.dataset.i));document.querySelector('#language').innerHTML=(lang==='ko'?'EN':'KO')+' <span>↗</span>';document.querySelector('#language').setAttribute('aria-label',lang==='ko'?'Switch language to English':'한국어로 변경');document.querySelector('.close').setAttribute('aria-label',t('close'));document.querySelector('#mobileToggle').setAttribute('aria-label',lang==='ko'?'탐색 메뉴 열기':'Open navigation');document.title=(route==='menu')?'Menu · Rajput · 라즈뿟 인도요리':'Rajput · 라즈뿟 인도요리 | Deokcheon, Busan'}
-const mapQuery=encodeURIComponent('라즈뿟 인도요리 부산 북구 덕천1길 9');const naver=`https://map.naver.com/p/search/${mapQuery}`,kakao=`https://map.kakao.com/?q=${mapQuery}`;
-let cleanupHome=()=>{};
-function home(){
-cleanupHome();
-const en=lang==='en';
-main.innerHTML=`
-<section class="hero-v2">
-  <div class="hero-bg"><img src="/assets/hero-v2.webp" width="1536" height="1024" fetchpriority="high" alt="${en?'Conceptual curry in a dark studio setting':'어두운 배경의 커리 콘셉트 이미지'}"></div>
-  <div class="hero-content"><p class="hero-kicker">INDIAN CUISINE. DEOKCHEON, BUSAN.</p>
-    <h1>${en?'India<span class="dot">.</span><br>In Busan<span class="dot">.</span>':'인도의 풍미<span class="dot">.</span><br>바로, 덕천<span class="dot">.</span>'}</h1>
-    <p class="hero-description">${en?'A new flavour. A familiar neighbourhood.<br>Find your place at Rajput’s table.':'익숙한 동네에서 만나는 새로운 한 끼.<br>라즈뿟의 식탁으로 초대합니다.'}</p>
-    <div class="hero-actions"><a class="round-link" href="/menu/"><span>${en?'Explore menu':'메뉴 둘러보기'}</span><span class="circle" aria-hidden="true">↗</span></a><a class="quiet-link" href="#visit">${en?'Find us ↗':'덕천에서 만나요'}</a></div>
-  </div><div class="hero-bottom"><a href="#table" class="scroll-cue"><span class="scroll-line" aria-hidden="true"></span><span>${en?'SCROLL TO DISCOVER':'아래로 스크롤'}</span></a><span class="concept-label">${t('conceptPhoto')}</span></div>
-</section>
-<section id="table" class="intro-v2"><p class="eyebrow reveal">RAJPUT / 라즈뿟 인도요리</p><div><h2 class="intro-statement reveal">${en?'Different flavours.<br>Same table.<br><span class="dim">That’s a good start.</span>':'새로운 맛.<br>함께하는 식탁.<br><span class="dim">좋은 시간의 시작.</span>'}</h2><p class="intro-copy reveal reveal-delay">${en?'Curry to discover. Naan to pass around. Meet Indian cuisine in Deokcheon, one shared plate at a time.':'커리 한 그릇을 발견하고, 난 한 조각을 건네는 시간. 덕천에서 인도 요리를 만나보세요.'}</p><p class="intro-place reveal">DEOKCHEON, BUSAN · 2F</p></div></section>
-<section class="food-stage" aria-label="${en?'Explore the food':'요리 살펴보기'}"><div class="stage-sticky"><div class="stage-topline"><span>${en?'A TASTE OF WHAT’S NEXT':'다음 한 입의 발견'}</span><span class="stage-count">01 / 03</span></div>
-${[
-{image:'tandoor-v2.webp',cat:'tandoor',n:'01',title:en?'Meet the<br>tandoor.':'탄두리와<br>만나는 순간.',desc:en?'Tandoori chicken. Paneer tikka. Discover something worth passing around.':'탄두리 치킨부터 파니르 티카까지. 함께 나누고 싶은 한 접시를 만나보세요.',alt:en?'Conceptual tandoori chicken':'탄두리 치킨 콘셉트 이미지'},
-{image:'naan-v2.webp',cat:'naan',n:'02',title:en?'Made for<br>the next dip.':'찢고, 찍고.<br>한 입 더.',desc:en?'Tear off a little. Dip into something new. Plain, butter or garlic — take your pick.':'조금씩 찢어, 커리에 푹. 플레인, 버터, 갈릭 중 취향대로 골라보세요.',alt:en?'Conceptual naan bread':'난 콘셉트 이미지'},
-{image:'hero-v2.webp',cat:'curry',n:'03',title:en?'Go a little<br>deeper.':'커리 한 그릇.<br>새로운 발견.',desc:en?'Curious about curry? Explore lamb do piaza and find your next favourite.':'커리가 궁금하다면, 램 도 피아자부터. 새로운 취향을 찾아보세요.',alt:en?'Conceptual curry image, not an actual menu dish':'실제 메뉴 음식 사진이 아닌 커리 콘셉트 이미지'}
-].map((x,j)=>`<article class="stage-slide ${j===0?'active':''}" data-slide="${j}" aria-hidden="${j!==0}"><img src="/assets/${x.image}" alt="${x.alt}" width="1536" height="1024" loading="lazy"><div class="stage-copy"><p class="stage-number">${x.n} / ${x.cat.toUpperCase()}</p><h2>${x.title}</h2><p>${x.desc}</p><a class="quiet-link" href="/menu/?category=${x.cat}">${en?'Explore '+x.cat+' ↗':'메뉴 자세히 보기 ↗'}</a></div></article>`).join('')}
-<div class="stage-tabs" role="group" aria-label="${en?'Food chapters':'요리 챕터'}">${[['Tandoor','탄두리'],['Naan','난'],['Curry','커리']].map((x,j)=>`<button class="stage-tab ${j===0?'active':''}" data-chapter="${j}" aria-pressed="${j===0}">${en?x[0]:x[1]}<span class="tab-progress" aria-hidden="true"></span></button>`).join('')}</div><span class="stage-concept">${t('conceptPhoto')}</span></div></section>
-<section class="menu-invite"><div class="invite-top"><h2 class="reveal">${en?'Find your<br><span>next favourite.</span>':'다음 한 끼의<br><span>취향을 찾아서.</span>'}</h2><p class="reveal reveal-delay">${en?'Browse at your own pace.<br>Search in English or Korean.<br>A little curiosity looks good on you.':'천천히 둘러보세요.<br>한국어와 영어로 메뉴를 검색하고,<br>궁금한 요리를 자세히 알아보세요.'}</p></div><div class="invite-content"><a class="invite-image reveal" href="/menu/?category=naan" aria-label="${en?'Explore naan':'난 메뉴 보기'}"><img src="/assets/naan-v2.webp" width="1536" height="1024" loading="lazy" alt="${en?'Conceptual naan bread on a sculptural plate':'접시 위 난 콘셉트 이미지'}"><span class="concept-label">${t('conceptPhoto')}</span></a><div class="invite-panel reveal reveal-delay"><span class="mini-brand">THE DIGITAL MENU</span><h3>${en?'Your table.<br>Your kind<br>of flavour.':'당신의 식탁.<br>당신만의<br>새로운 취향.'}</h3><a class="round-link" href="/menu/"><span>${en?'Explore the menu':'전체 메뉴 보기'}</span><span class="circle" aria-hidden="true">↗</span></a></div></div><div class="invite-meta"><span>${en?'KOREAN & ENGLISH · NO APP NEEDED':'한국어 & ENGLISH · 앱 설치 없이'}</span><span>${t('researchNote')}</span></div></section>
-<section id="visit" class="visit-v2"><div><p class="eyebrow reveal">COME FIND US / DEOKCHEON</p><h2 class="reveal">${en?'See you<br><span class="grey">upstairs.</span>':'덕천에서.<br><span class="grey">2층에서.</span>'}</h2></div><div class="visit-details reveal reveal-delay"><p class="address">${t('address')}</p><p class="sub">${t('landmark')}</p><div class="map-links"><a class="text-link" href="${naver}" target="_blank" rel="noopener">${t('naver')}</a><a class="text-link" href="${kakao}" target="_blank" rel="noopener">${t('kakao')}</a><button id="copyAddress" class="text-link">${t('copyAddress')}</button></div><div class="visit-direction"><span class="floor-symbol">2F<span class="accent">↗</span></span><p>${t('floorLabel')}<br>${t('floorNote')}</p></div><div class="visit-confirm">${t('confirmVisit')}<br><button class="text-link" id="contactInfo">${t('contact')}</button></div></div></section>`;
-document.querySelector('#copyAddress').onclick=async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText('부산광역시 북구 덕천1길 9, 2층 라즈뿟 인도요리');b.textContent=t('copied')}catch{openDialog(`<h2>${t('address')}</h2><p>${en?'Select and copy the address.':'주소를 선택해 복사해 주세요.'}</p>`)}};document.querySelector('#contactInfo').onclick=contactInfo;
-initHomeMotion();
+import { menuItems, categories } from "./menu-data.js";
+import { dictionary } from "./i18n.js";
+import {
+  escapeHTML as esc,
+  normalizeBase,
+  searchDishes,
+  menuURL,
+  readLanguage,
+  saveLanguage,
+  formatPrice,
+} from "./utils.js";
+const base = normalizeBase(
+  document.querySelector('meta[name="rajput-base"]').content,
+);
+const relative = location.pathname.startsWith(base)
+  ? location.pathname.slice(base.length).replace(/\/+$/, "")
+  : "404";
+const route = relative === "" ? "home" : relative;
+let storage;
+try {
+  storage = window.localStorage;
+} catch {
+  storage = null;
 }
-function initHomeMotion(){
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
-const stage=document.querySelector('.food-stage'),slides=[...document.querySelectorAll('.stage-slide')],tabs=[...document.querySelectorAll('.stage-tab')];let frame=0,last=-1;
-function update(){frame=0;if(!stage?.isConnected)return;const hero=document.querySelector('.hero-v2'),heroP=Math.min(1,Math.max(0,scrollY/hero.offsetHeight));document.querySelector('.hero-bg').style.transform=`translateY(${heroP*100}px) scale(${1+heroP*.05})`;document.querySelector('.hero-content').style.transform=`translateY(${-heroP*45}px)`;document.querySelector('.hero-content').style.opacity=1-heroP*.75;const intro=document.querySelector('.intro-v2'),introP=Math.max(0,Math.min(1,(innerHeight*.8-intro.getBoundingClientRect().top)/(innerHeight*.6))),ink=Math.round(160-introP*143);document.querySelector('.intro-statement .dim').style.color=`rgb(${ink},${ink},${ink})`;const range=Math.max(1,stage.offsetHeight-innerHeight),p=Math.min(1,Math.max(0,(scrollY-stage.offsetTop)/range)),active=Math.min(2,Math.floor(p*3));if(active!==last){last=active;slides.forEach((el,j)=>{el.classList.toggle('active',j===active);el.setAttribute('aria-hidden',String(!reduced&&j!==active));el.inert=!reduced&&j!==active});tabs.forEach((el,j)=>{el.classList.toggle('active',j===active);el.setAttribute('aria-pressed',String(j===active))});document.querySelector('.stage-count').textContent=`0${active+1} / 03`;}tabs.forEach((el,j)=>el.style.setProperty('--tab-progress',j===active?Math.min(1,Math.max(0,p*3-j)):0));}
-function onScroll(){if(!frame)frame=requestAnimationFrame(update)}
-if(!reduced){addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);tabs.forEach((b,j)=>b.onclick=()=>{const range=stage.offsetHeight-innerHeight;scrollTo({top:stage.offsetTop+range*(j+.15)/3,behavior:'smooth'})});update()}else{slides.forEach(x=>{x.inert=false;x.setAttribute('aria-hidden','false')})}
-cleanupHome=()=>{observer.disconnect();removeEventListener('scroll',onScroll);removeEventListener('resize',onScroll);cancelAnimationFrame(frame)};
+let lang = readLanguage(storage),
+  category = "all",
+  query = "",
+  returnFocus = null;
+const t = (key) => dictionary[key]?.[lang === "ko" ? 0 : 1] || key;
+const lines = (key) => esc(t(key)).replaceAll("\n", "<br>");
+const main = document.getElementById("main"),
+  dialog = document.getElementById("detail");
+const maps = {
+  naver:
+    "https://map.naver.com/p/search/" +
+    encodeURIComponent("라즈뿟 인도요리 부산 북구 덕천1길 9"),
+  kakao:
+    "https://map.kakao.com/link/search/" +
+    encodeURIComponent("라즈뿟 인도요리 부산 덕천1길 9"),
+  google:
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent("라즈뿟 인도요리 부산 북구 덕천1길 9"),
+};
+const arrow = '<span aria-hidden="true">↗</span>';
+const photo = (name, alt, cls = "") =>
+  `<figure class="${cls}"><img src="/assets/${name}.webp" alt="${esc(alt)}" loading="lazy" width="1536" height="1024"><figcaption>${t("photoNote")}</figcaption></figure>`;
+function home() {
+  return `<section class="hero"><div class="hero-top"><span>인도요리 · INDIAN CUISINE</span><span>${t("heroLocation")}</span></div><h1 class="hero-wordmark">Rajput</h1><div class="hero-bottom"><p class="hero-korean">라즈뿟 인도요리</p><p>${lines("heroLine")}</p><a class="text-link" href="/menu/">${t("viewMenu")}</a></div><figure class="hero-photo"><img src="/assets/table.webp" alt="${lang === "ko" ? "커리, 탄두리 치킨, 난을 차린 식탁 — 콘셉트 사진" : "Curry, tandoori chicken, and naan on an Indian table — concept photograph"}" width="1536" height="1024" fetchpriority="high"><figcaption>${t("photoNote")}</figcaption><a class="photo-link" href="#visit">Deokcheon, Busan ${arrow}</a></figure></section>
+<section class="food-section wrap reveal"><div class="section-heading"><p class="eyebrow">${t("foodEyebrow")}</p><h2>${lines("foodTitle")}</h2><p class="body-copy">${t("foodIntro")}</p><a class="text-link" href="/menu/">${t("foodCta")}</a></div><div class="food-display">${photo("tandoori", lang === "ko" ? "탄두리 치킨 콘셉트 사진" : "Concept tandoori chicken photograph")}<div class="featured-list">${[
+    ["tandoori-half", "featuredTandoor", "featuredTandoorSub"],
+    ["butter-chicken", "featuredCurry", "featuredCurrySub"],
+    ["garlic-naan", "featuredNaan", "featuredNaanSub"],
+  ]
+    .map(
+      ([id, name, sub], i) =>
+        `<a href="/menu/?dish=${id}"><span class="item-number">0${i + 1}</span><span><small>${t(sub)}</small><strong>${t(name)}</strong></span>${arrow}</a>`,
+    )
+    .join("")}</div></div></section>
+<section class="table-section" id="table"><div class="table-inner wrap reveal">${photo("naan", lang === "ko" ? "난을 담은 바구니 콘셉트 사진" : "Concept photograph of naan in a basket")}<div><p class="eyebrow">${t("tableEyebrow")}</p><h2>${lines("tableTitle")}</h2><p class="body-copy">${t("tableText")}</p><a class="text-link" href="/menu/">${t("tableLink")}</a></div></div></section>
+<section id="visit" class="visit-section wrap reveal"><div><p class="eyebrow">${t("visitEyebrow")}</p><h2>${lines("visitTitle")}</h2><div class="floor-mark" aria-hidden="true">2F<span>DEOKCHEON<br>BUSAN</span></div></div><div class="visit-details"><p class="place-name">라즈뿟 인도요리 <span>Rajput Indian Cuisine</span></p><address>${t("address")}</address><p class="landmark">${t("landmark")}</p><button class="text-link copy-address">${t("copyAddress")} <span aria-hidden="true">⧉</span></button><div class="map-links"><p>${t("mapPrompt")}</p>${Object.entries(
+    maps,
+  )
+    .map(
+      ([key, url]) =>
+        `<a href="${url}" target="_blank" rel="noopener noreferrer">${t(key)}</a>`,
+    )
+    .join(
+      "",
+    )}</div><div class="visit-note"><h3>${t("hoursLabel")}</h3><p>${t("hoursText")}</p></div></div></section>
+<section class="faq wrap reveal"><h2>${t("faqTitle")}</h2><div>${[1, 2, 3].map((n) => `<details><summary>${t("faq" + n)}<span aria-hidden="true">+</span></summary><p>${t("faq" + n + "a")}</p></details>`).join("")}</div></section>`;
 }
-
-function menu(){category=new URLSearchParams(location.search).get('category')||category;if(!['all','tandoor','curry','naan','sides'].includes(category))category='all';main.innerHTML=`<section class="menu-page"><div class="menu-heading"><div>${i('menuEye','p','eyebrow')}<h1>${t('menuTitle')}</h1></div><p>${t('menuIntro')}</p></div><div class="menu-cover"><img src="/assets/tandoor-v2.webp" width="1536" height="1024" alt="${lang==='ko'?'탄두리 치킨 콘셉트 이미지':'Conceptual tandoori chicken'}"><span class="menu-cover-title">${lang==='ko'?'한 입의 발견.':'A taste of<br>something new.'}</span><span class="concept-label">${t('conceptPhoto')}</span></div><div class="menu-tools"><div class="categories" role="group" aria-label="${lang==='ko'?'메뉴 카테고리':'Menu categories'}">${[['all','all'],['tandoor','tandoorCat'],['curry','curryCat'],['naan','naanCat'],['sides','sidesCat']].map(([c,k])=>`<button class="category ${c===category?'active':''}" data-category="${c}" aria-pressed="${c===category}">${t(k)}</button>`).join('')}</div><label class="search-box"><span aria-hidden="true">⌕</span><input type="search" id="search" aria-label="${t('searchLabel')}" placeholder="${t('search')}" autocomplete="off"><button type="button" class="search-clear" id="clearSearch" aria-label="${t('clear')}">×</button></label></div><div class="result-meta"><span id="count" role="status" aria-live="polite"></span><span>${t('researchNote')}</span></div><div class="menu-grid" id="results"></div><p class="menu-note">${t('menuNote')}</p><div class="menu-bottom"><a href="/">${t('backHome')}</a><a href="/qr/">${t('qrAction')}</a><a href="/#visit">${t('findUs')}</a></div></section>`;const input=document.querySelector('#search');input.value=query;input.oninput=e=>{query=e.target.value;renderResults()};document.querySelector('#clearSearch').onclick=()=>{query='';input.value='';input.focus();renderResults()};document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{category=b.dataset.category;const u=new URL(location.href);u.searchParams.set('category',category);history.replaceState(null,'',u);document.querySelectorAll('[data-category]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});renderResults()});renderResults()}
-function renderResults(){const items=searchDishes(menuItems,category,query);document.querySelector('#count').textContent=lang==='ko'?`${items.length}${t('items')}`:`${items.length} ${items.length===1?'dish':t('items')}`;document.querySelector('#results').innerHTML=items.length?items.map(x=>`<button class="dish" data-dish="${x.id}" aria-label="${lang==='ko'?x.ko:x.en}"><span class="dish-index">${String(x.displayOrder).padStart(2,'0')}</span><div><h2>${lang==='ko'?x.ko:x.en}</h2><p class="ko-name">${lang==='ko'?x.en:x.ko}</p><p class="description">${x.description[lang]}</p><span class="price">${t('pricePending')}</span></div><span class="dish-arrow">↗</span></button>`).join(''):`<div class="empty"><h2>${t('emptyTitle')}</h2><p>${t('emptyText')}</p><button id="resetSearch">${t('reset')}</button></div>`;document.querySelectorAll('[data-dish]').forEach(b=>b.onclick=()=>dishDetail(b.dataset.dish));document.querySelector('#resetSearch')?.addEventListener('click',()=>{category='all';query='';const u=new URL(location.href);u.search='';history.replaceState(null,'',u);menu()})}
-let priorFocus;function openDialog(content){priorFocus=document.activeElement;document.querySelector('#dialogContent').innerHTML=content;dialog.setAttribute('aria-label',document.querySelector('#dialogContent h2')?.textContent||t('aboutPreview'));dialog.showModal();document.querySelector('.close').focus()}function dishDetail(id){const x=menuItems.find(x=>x.id===id);openDialog(`<p class="detail-label">${t('provisional')}</p><h2>${lang==='ko'?x.ko:x.en}</h2><h3>${lang==='ko'?x.en:x.ko}</h3><p>${x.description[lang]}</p><p style="color:var(--saffron)">${t('pricePending')}</p><p class="detail-note">${t('menuNote')}</p><a class="text-link" href="${x.source}" target="_blank" rel="noopener">${t('detailSource')}</a>`)}
-function previewInfo(){openDialog(`<p class="detail-label">AYRO / PRIVATE CLIENT DEMONSTRATION</p><h2>${t('previewTitle')}</h2><p>${t('previewText')}</p><a class="text-link" href="/docs/CONTENT_STATUS.md" target="_blank">${t('previewLink')}</a>`)}function contactInfo(){openDialog(`<h2>${t('contactTitle')}</h2><p>${t('contactText')}</p><div class="map-links"><a href="${naver}" target="_blank" rel="noopener">${t('naver')}</a><a href="${kakao}" target="_blank" rel="noopener">${t('kakao')}</a></div>`)}
-let qrDownloadURL=null;
-function renderQR(destination){const container=document.querySelector('#qr-code'),download=document.querySelector('#downloadQr');try{const code=window.qrcode(0,'M');code.addData(destination);code.make();container.innerHTML=code.createSvgTag({cellSize:5,margin:20,scalable:true}).replace(/(<svg[^>]*>)/,'$1<rect width="100%" height="100%" fill="white"/>');if(qrDownloadURL)URL.revokeObjectURL(qrDownloadURL);qrDownloadURL=URL.createObjectURL(new Blob([container.innerHTML],{type:'image/svg+xml'}));download.href=qrDownloadURL}catch{container.textContent=lang==='ko'?'QR 코드를 만들 수 없습니다. 아래 메뉴 링크를 이용해 주세요.':'QR unavailable. Use the menu link below.';download.hidden=true}}
-function qr(){const destination=menuURL(location.origin,base);main.innerHTML=`<section class="qr-page"><p class="eyebrow">RAJPUT / DIGITAL MENU</p><h1>${t('qrTitle')}</h1><p>${t('qrIntro')}</p><div class="qr-layout"><div class="qr-card"><span class="wordmark">RAJPUT<span class="brand-dot">·</span></span><p>라즈뿟 인도요리 · DEOKCHEON, BUSAN</p><div id="qr-code" role="img" aria-label="${lang==='ko'?'라즈뿟 메뉴 URL의 QR 코드':'QR code for the Rajput menu URL'}"></div><h2>${t('scan')}</h2><p>${t('privateQr')}</p><p class="qr-url">${destination}</p></div><div class="qr-actions"><p>${t('qrFine')}</p><button class="solid" id="printQr">${t('print')}</button><a class="text-link" id="downloadQr" download="rajput-menu-qr.svg">${t('download')}</a><a class="text-link" href="/menu/">${t('openDestination')}</a></div></div></section>`;document.querySelector('#printQr').onclick=()=>window.print();renderQR(destination)}
-function render(){cleanupHome();document.body.dataset.page=(route==='menu')?'menu':(route==='qr')?'qr':'home';if((route==='menu'))menu();else if((route==='qr'))qr();else if(route==='')home();else main.innerHTML=`<section class="menu-page"><p class="eyebrow">404</p><h1>${lang==='ko'?'페이지를 찾을 수 없습니다.':'Page not found.'}</h1><a class="text-link" href="/">${t('backHome')}</a></section>`;updateUI();if(location.hash==='#visit'||location.hash==='#table')requestAnimationFrame(()=>document.getElementById(location.hash.slice(1))?.scrollIntoView({behavior:'instant'}))}
-document.querySelector('#language').onclick=()=>{lang=lang==='ko'?'en':'ko';saveLanguage(storage,lang);if(dialog.open)dialog.close();render()};document.querySelector('#mobileToggle').onclick=()=>{const open=document.querySelector('header').classList.toggle('nav-open');document.querySelector('#mobileToggle').setAttribute('aria-expanded',String(open))};document.querySelectorAll('header nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('header').classList.remove('nav-open');document.querySelector('#mobileToggle').setAttribute('aria-expanded','false')}));document.querySelector('.close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});dialog.addEventListener('close',()=>priorFocus?.focus());document.querySelector('#previewInfo').onclick=previewInfo;document.querySelectorAll('.preview-info').forEach(b=>b.onclick=previewInfo);render();
+function menu() {
+  return `<section class="menu-intro wrap"><p class="eyebrow">${t("menuEyebrow")}</p><h1>${t("menuTitle")}<span class="title-flourish" aria-hidden="true">✳</span></h1><p>${t("menuIntro")}</p></section><section class="menu-browser wrap" aria-label="${t("menu")}"><div class="menu-tools"><div class="category-tabs" role="group" aria-label="${t("menu")}">${["all", ...categories].map((c) => `<button data-category="${c}" aria-pressed="${category === c}">${t(c)}</button>`).join("")}</div><div class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="search" aria-label="${t("search")}" placeholder="${t("searchPlaceholder")}" value="${esc(query)}" autocomplete="off"><button id="clearSearch" aria-label="${t("clearSearch")}" ${query ? "" : "hidden"}>×</button></div></div><p class="menu-notice">${t("menuNotice")}</p><p id="resultCount" class="result-count" role="status" aria-live="polite"></p><div id="menuResults"></div><p class="menu-bottom-note">${t("menuFooter")}</p></section>`;
+}
+function dishRow(d) {
+  return `<button class="dish" data-dish="${d.id}" aria-label="${esc((lang === "ko" ? d.ko : d.en) + " · " + t("details"))}"><span class="dish-copy"><strong>${esc(lang === "ko" ? d.ko : d.en)}</strong><small lang="${lang === "ko" ? "en" : "ko"}">${esc(lang === "ko" ? d.en : d.ko)}</small><span>${esc(d.description[lang])}</span></span><span class="dish-tail"><small>${esc(formatPrice(d, lang) || t("pricePending"))}</small><span class="dish-plus" aria-hidden="true">+</span></span></button>`;
+}
+function renderResults() {
+  const filtered = searchDishes(
+    menuItems.filter((d) => d.visible),
+    category,
+    query,
+  );
+  document.getElementById("resultCount").textContent =
+    filtered.length +
+    (lang === "en" && filtered.length === 1 ? " dish" : t("results"));
+  document.getElementById("clearSearch").hidden = !query;
+  document
+    .querySelectorAll("[data-category]")
+    .forEach((b) =>
+      b.setAttribute("aria-pressed", b.dataset.category === category),
+    );
+  document.getElementById("menuResults").innerHTML = filtered.length
+    ? categories
+        .filter((c) => filtered.some((d) => d.category === c))
+        .map(
+          (c, i) =>
+            `<section class="menu-group"><div class="menu-group-heading"><span>0${categories.indexOf(c) + 1}</span><h2>${t(c)}</h2><span>${filtered.filter((d) => d.category === c).length}</span></div><div class="dish-grid">${filtered
+              .filter((d) => d.category === c)
+              .map(dishRow)
+              .join("")}</div></section>`,
+        )
+        .join("")
+    : `<div class="empty"><span aria-hidden="true">⌕</span><h2>${t("emptyTitle")}</h2><p>${t("emptyText")}</p><button class="button" id="resetMenu">${t("reset")}</button></div>`;
+  document
+    .querySelectorAll("[data-dish]")
+    .forEach((b) =>
+      b.addEventListener("click", () => openDish(b.dataset.dish, b)),
+    );
+  document.getElementById("resetMenu")?.addEventListener("click", () => {
+    category = "all";
+    query = "";
+    document.getElementById("search").value = "";
+    renderResults();
+    document.getElementById("search").focus();
+  });
+}
+function openDialog(html, trigger) {
+  returnFocus = trigger || document.activeElement;
+  document.getElementById("dialogContent").innerHTML = html;
+  dialog.showModal();
+  document.body.classList.add("dialog-open");
+  dialog.querySelector(".close").focus();
+}
+function openDish(id, trigger) {
+  const d = menuItems.find((d) => d.id === id && d.visible);
+  if (!d) return;
+  openDialog(
+    `${d.image ? photo(d.image.replace(".webp", ""), lang === "ko" ? "음식 콘셉트 사진" : "Concept food photograph", "detail-photo") : ""}<div class="detail-copy"><p class="eyebrow">${t(d.category)} · RAJPUT</p><h2 id="dialogTitle">${esc(lang === "ko" ? d.ko : d.en)}</h2><p class="detail-translation" lang="${lang === "ko" ? "en" : "ko"}">${esc(lang === "ko" ? d.en : d.ko)}</p><p>${esc(d.description[lang])}</p><p class="detail-price">${esc(formatPrice(d, lang) || t("pricePending"))}</p><p class="ingredient-note">${t("ingredientsNote")}</p><details class="source-details"><summary>${t("sourceLabel")}</summary><p>${t("sourceNote")}</p><a href="${esc(d.source)}" target="_blank" rel="noopener noreferrer">${t("openSource")}</a></details></div>`,
+    trigger,
+  );
+}
+function qrPage() {
+  return `<section class="qr-layout wrap"><div class="qr-intro"><p class="eyebrow">RAJPUT · QR MENU</p><h1>${lines("qrTitle")}</h1><p>${t("qrIntro")}</p><div class="qr-actions"><a class="button" id="downloadQR" download="rajput-menu-qr.svg">${t("download")}</a><button class="text-link" id="printQR">${t("print")} ↗</button></div><div class="qr-destination"><span>${t("qrDestination")}</span><a id="menuDestination" href="/menu/"></a></div><p class="qr-warning">${t("qrWarning")}</p></div><article class="qr-card" aria-label="${t("print")}"><div class="card-top">INDIAN CUISINE<span>DEOKCHEON, BUSAN</span></div><p class="card-wordmark">Rajput</p><p class="card-korean">라즈뿟 인도요리</p><div id="qrCode"></div><h2>${t("qrCardTitle")}</h2><p>${t("qrCardSub")}</p><p class="card-demo">${t("qrDemo")}</p></article></section>`;
+}
+function generateQR() {
+  const target = menuURL(location.origin, base);
+  document.getElementById("menuDestination").textContent = target;
+  document.getElementById("menuDestination").href = target;
+  try {
+    if (typeof window.qrcode !== "function")
+      throw Error("QR encoder unavailable");
+    const qr = window.qrcode(0, "M");
+    qr.addData(target);
+    qr.make();
+    const qrSVG = qr
+      .createSvgTag({ cellSize: 8, margin: 32, scalable: true })
+      .replace(
+        "<svg ",
+        '<svg role="img" aria-label="Rajput digital menu QR code" ',
+      );
+    document.getElementById("qrCode").innerHTML = qrSVG;
+    document.getElementById("downloadQR").href = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(qrSVG);
+  } catch {
+    document.getElementById("qrCode").innerHTML =
+      `<p role="alert">${t("qrError")}</p>`;
+    document.getElementById("downloadQR").removeAttribute("href");
+    document.getElementById("downloadQR").setAttribute("aria-disabled", "true");
+    document.getElementById("printQR").disabled = true;
+  }
+  document.getElementById("printQR").onclick = () => window.print();
+}
+function initMotion() {
+  const els = document.querySelectorAll(".reveal");
+  if (
+    matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    !("IntersectionObserver" in window)
+  )
+    return;
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
+        }
+      }),
+    { threshold: 0.08 },
+  );
+  els.forEach((el) => {
+    el.classList.add("will-reveal");
+    observer.observe(el);
+  });
+}
+function render() {
+  document.documentElement.lang = lang;
+  document
+    .querySelectorAll("[data-i]")
+    .forEach((el) => (el.textContent = t(el.dataset.i)));
+  document.getElementById("language").textContent =
+    lang === "ko" ? "EN" : "한국어";
+  document
+    .getElementById("language")
+    .setAttribute(
+      "aria-label",
+      lang === "ko" ? "Switch language to English" : "한국어로 변경",
+    );
+  document
+    .getElementById("mobileToggle")
+    .setAttribute(
+      "aria-label",
+      lang === "ko" ? "메뉴 열기" : "Open navigation",
+    );
+  main.innerHTML =
+    route === "home"
+      ? home()
+      : route === "menu"
+        ? menu()
+        : route === "qr"
+          ? qrPage()
+          : `<section class="not-found wrap"><p class="eyebrow">404 · RAJPUT</p><h1>${t("notFound")}</h1><a href="/" class="button">${t("backHome")}</a></section>`;
+  document.title =
+    (route === "menu"
+      ? t("menu") + " · "
+      : route === "qr"
+        ? "QR Menu · "
+        : "") + "Rajput · 라즈뿟 인도요리";
+  document.querySelectorAll("nav a").forEach((a) => {
+    if (
+      (route === "menu" && a.pathname === base + "menu/") ||
+      (route === "qr" && a.pathname === base + "qr/")
+    )
+      a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+  if (route === "menu") {
+    renderResults();
+    document.getElementById("search").addEventListener("input", (e) => {
+      query = e.target.value;
+      renderResults();
+    });
+    document.querySelectorAll("[data-category]").forEach((b) =>
+      b.addEventListener("click", () => {
+        category = b.dataset.category;
+        renderResults();
+      }),
+    );
+    document.getElementById("clearSearch").onclick = () => {
+      query = "";
+      document.getElementById("search").value = "";
+      renderResults();
+      document.getElementById("search").focus();
+    };
+  }
+  if (route === "qr") generateQR();
+  document.querySelectorAll(".copy-address").forEach((b) =>
+    b.addEventListener("click", async () => {
+      try {
+        await Promise.race([
+          navigator.clipboard.writeText("부산광역시 북구 덕천1길 9, 2층"),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Clipboard unavailable")), 2000),
+          ),
+        ]);
+        toast(t("copied"));
+      } catch {
+        toast(t("copyFailed"));
+      }
+    }),
+  );
+  initMotion();
+  if (location.hash && route === "home")
+    requestAnimationFrame(() =>
+      document.getElementById(location.hash.slice(1))?.scrollIntoView(),
+    );
+}
+let toastTimer;
+function toast(message) {
+  clearTimeout(toastTimer);
+  const el = document.getElementById("toast");
+  el.textContent = message;
+  el.classList.add("show");
+  toastTimer = setTimeout(() => el.classList.remove("show"), 5000);
+}
+dialog.querySelector(".close").onclick = () => dialog.close();
+dialog.addEventListener("click", (e) => {
+  if (e.target === dialog) {
+    const r = dialog.getBoundingClientRect();
+    if (
+      e.clientX < r.left ||
+      e.clientX > r.right ||
+      e.clientY < r.top ||
+      e.clientY > r.bottom
+    )
+      dialog.close();
+  }
+});
+dialog.addEventListener("close", () => {
+  document.body.classList.remove("dialog-open");
+  if (returnFocus?.isConnected) returnFocus.focus();
+});
+document.getElementById("language").onclick = () => {
+  lang = lang === "ko" ? "en" : "ko";
+  saveLanguage(storage, lang);
+  render();
+  document.getElementById("language").focus();
+};
+document.getElementById("previewInfo").onclick = (e) =>
+  openDialog(
+    `<div class="detail-copy"><p class="eyebrow">RAJPUT · DESIGN PREVIEW</p><h2 id="dialogTitle">${t("aboutTitle")}</h2><p>${t("aboutText")}</p></div>`,
+    e.currentTarget,
+  );
+const mobileToggle = document.getElementById("mobileToggle"),
+  nav = document.getElementById("navigation");
+function closeNavigation() {
+  mobileToggle.setAttribute("aria-expanded", "false");
+  nav.classList.remove("open");
+}
+mobileToggle.onclick = () => {
+  const open = mobileToggle.getAttribute("aria-expanded") !== "true";
+  mobileToggle.setAttribute("aria-expanded", String(open));
+  nav.classList.toggle("open", open);
+  if (open) nav.querySelector("a").focus();
+};
+nav
+  .querySelectorAll("a")
+  .forEach((a) => a.addEventListener("click", closeNavigation));
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && nav.classList.contains("open")) {
+    closeNavigation();
+    mobileToggle.focus();
+  }
+});
+render();
+const initialDish = new URLSearchParams(location.search).get("dish");
+if (route === "menu" && initialDish) openDish(initialDish);

@@ -2,14 +2,16 @@
 
 ## QR encoder
 
-The repository's existing `public/vendor/qrcode.js` is retained. QR Code Generator for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT licence. Its licence/copyright header is preserved in the source file. No external QR-generation service is used.
+The existing `public/vendor/qrcode.js` is retained: QR Code Generator for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT licence. Its copyright/licence header remains intact. No external QR service receives the menu URL.
 
 ## Fonts
 
-Manrope and Noto Sans KR are requested from the official Google Fonts CSS service and have system fallbacks. These font families are distributed under the SIL Open Font License through Google Fonts. No font binary is bundled.
+DM Serif Display, DM Sans and Noto Sans KR are requested from the official Google Fonts CSS/CDN service, with system fallbacks. The families are distributed under the SIL Open Font License through Google Fonts. No font binary is bundled.
 
-## Concept food images and proposed identity
+## Concept images and identity
 
-`hero-v2.webp`, `tandoor-v2.webp` and `naan-v2.webp` were generated for this design and converted to WebP. They are not actual Rajput dish or interior photographs. Their conceptual status is disclosed in the interface. The proposed wordmark and favicon are original concept graphics and are not asserted to be the restaurant's official registered logo. See DESIGN.md for prompt briefs and replacement requirements.
+`table.webp`, `tandoori.webp`, `naan.webp` were newly generated for this design and converted to WebP. They are not photographs of actual Rajput food or interiors. The original proposed type wordmark/favicon are not asserted to be official registered business artwork. See DESIGN.md for direction and replacement requirements.
 
-The previous Unsplash stock images were removed from the current build. No review or directory photographs were copied.
+No review/directory photographs were reused. The rejected cinematic v2 assets were removed from the current build. Research quotations are limited to the short source-contamination identifiers needed to document the discrepancy.
+
+Prettier was used as a development formatting tool; ZXing-C++ was used outside the project for independent QR image decoding. Neither adds a runtime dependency or ships in the website.
